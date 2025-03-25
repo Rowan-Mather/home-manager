@@ -107,27 +107,6 @@
       allow-new-privileges = true
     '';
 
-    /*".config/nvim/queries/nix/injections.scm" = {
-      text = ''
-      ;; extends
-      (binding_set
-        (binding
-          attrpath: (attrpath) @_key (#eq? @_key "type")
-          expression: (string_expression) @_value (#eq? @_value "\"lua\""))
-         (binding
-           attrpath: (attrpath) @_keys (#eq? @_keys "config")
-             (indented_string_expression
-               (string_fragment) @lua))
-      )
-
-      (binding
-        attrpath: (attrpath) @_key (#eq? @_key "extraConfig")
-	(indented_string_expression
-		(string_fragment) @vim)
-      )
-      '';
-  };*/
-
   };
 
   # Home Manager can also manage your environment variables through
@@ -135,17 +114,11 @@
   # shell provided by Home Manager. If you don't want to manage your shell
   # through Home Manager then you have to manually source 'hm-session-vars.sh'
   # located at either
-  #
   #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
   # or
-  #
   #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
   # or
-  #
   #  /etc/profiles/per-user/rowan/etc/profile.d/hm-session-vars.sh
-  #
   home.sessionVariables = {
     # EDITOR = "emacs";
     EDITOR = "vim";
@@ -175,15 +148,5 @@
       vim.opt.runtimepath:append(parser_install_dir)
       EOF
     '';
-  };
-  programs.atuin = {
-    enable = true;
-    settings = {
-      sync_frequency = "15m";
-      dialect = "uk";
-      key_path = "/home/rowan/.atuin-key";
-      #sync_address = "https://api.atuin.sh";
-    };
-  };
-  
+  };  
 }
