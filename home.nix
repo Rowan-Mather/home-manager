@@ -127,26 +127,4 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   programs.bash.enableCompletion = true;
-  programs.kitty.enable = true;
-  programs.neovim = {
-    enable = true;
-    plugins = with pkgs.vimPlugins; [
-      nvim-treesitter
-      nvim-treesitter-parsers.nix
-      nvim-treesitter-parsers.bash
-      nvim-treesitter-parsers.lua
-    ];
-    extraConfig = ''
-      lua << EOF
-      -- Redirect Treesitter parser directory to a user-writable path
-      local parser_install_dir = vim.fn.stdpath('data') .. "/treesitter/parsers"
-      require('nvim-treesitter.configs').setup {
-        ensure_installed = { "nix", "bash", "lua" },
-        highlight = { enable = true },
-        parser_install_dir = parser_install_dir,
-      }
-      vim.opt.runtimepath:append(parser_install_dir)
-      EOF
-    '';
-  };  
 }
