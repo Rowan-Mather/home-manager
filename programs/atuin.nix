@@ -7,7 +7,7 @@
     settings = {
       sync_frequency = "15m";
       dialect = "uk";
-      key_path = ../assets/atuin-key;
+      key_path = "${../assets/atuin-key}";
       #sync_address = "https://api.atuin.sh";
     };
   };
