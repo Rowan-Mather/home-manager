@@ -1,6 +1,14 @@
-{ config, pkgs, ... }:
+# See Configuration Collection on the wiki for more examples!
+# https://nixos.wiki/wiki/Configuration_Collection
+
+{ config, pkgs, inputs, ... }:
 
 {
+  imports = [
+    ./sops.nix
+    ./programs
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "rowan";
@@ -15,20 +23,12 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  #nix = {
-  #  package = pkgs.nix;    # Specify the Nix package
-  #  settings = {
-  #    sandbox = "relaxed";
-  #  };
-  #};
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     hello
-    direnv
     python312Packages.grip
     python312Packages.ptpython
     aspell
@@ -39,6 +39,7 @@
     csvkit
     podman
     video-trimmer
+    sops
     qemu
 #    tightvnc
     ripgrep
@@ -46,7 +47,6 @@
     zellij
     xclip
     #Vim
-    #neovim
     vimPlugins.vim-plug
     #Bash
     shellcheck
@@ -120,11 +120,9 @@
   # or
   #  /etc/profiles/per-user/rowan/etc/profile.d/hm-session-vars.sh
   home.sessionVariables = {
-    # EDITOR = "emacs";
     EDITOR = "vim";
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  programs.bash.enableCompletion = true;
 }

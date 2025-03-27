@@ -8,9 +8,13 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, sops-nix, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -22,11 +26,12 @@
         # the path to your home.nix.
         modules = [
           ./home.nix
-          ./programs
+          sops-nix.homeManagerModules.sops
         ];
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
+        #extraSpecialArgs = { inherit sops-nix; };
       };
     };
 }

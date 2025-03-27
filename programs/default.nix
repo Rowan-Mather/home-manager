@@ -3,5 +3,6 @@
 {
   imports = [
     ./atuin.nix
+    ./bash.nix
   ];
 }
