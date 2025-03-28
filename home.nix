@@ -6,7 +6,7 @@
 {
   imports = [
     ./sops.nix
-    ./more-packages
+    ./package-config
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
