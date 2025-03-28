@@ -43,7 +43,6 @@
     nix-bash-completions
     blesh # Bash Line Editor, improves atuin
     xclip
-    zellij
 
     # Haskell
     cabal-install
