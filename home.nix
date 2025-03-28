@@ -26,51 +26,46 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    hello
-    python312Packages.grip
-    python312Packages.ptpython
-    aspell
+    # Misc.
+    aspell # Spell-checker
     aspellDicts.en
     aspellDicts.en-computers
-    mkpasswd
-    python312Packages.huggingface-hub
-    csvkit
+    hello
+    mkpasswd # Copy & paste
     podman
-    video-trimmer
-    sops
     qemu
-#    tightvnc
     ripgrep
-    kittysay
-    zellij
-    xclip
-    #Vim
-    vimPlugins.vim-plug
-    #Bash
-    shellcheck
-    pup
+    sops
+    
+    # Bash & Terminal
     bash-completion
+    shellcheck # Linter
     nix-bash-completions
-    blesh
-    #Nix
-    nixfmt-rfc-style
-    nixd
-    nix-bundle
-    #Rust
-    #cargo
-    #rustc
-    #clippy
-    crate2nix
-    #Haskell
-    stack
+    blesh # Bash Line Editor, improves atuin
+    xclip
+    zellij
+
+    # Haskell
     cabal-install
     haskellPackages.hspec
+
+    # Nix
+    nixfmt-rfc-style
+    nixd # Language server
+
     # Postgres (for hydra dev)
     postgresql_16_jit
-    # Perl
-    perl
+    
+    # Python
+    python312Packages.grip
+    python312Packages.ptpython
+
+    #Rust
+    cargo
+    crate2nix
+
+    #Vim
+    vimPlugins.vim-plug    
 
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
