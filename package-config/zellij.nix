@@ -5,5 +5,5 @@
   programs.zellij.enableBashIntegration = true;
   programs.zellij.attachExistingSession = true;
   programs.zellij.exitShellOnExit = true;
-  programs.zellij.settings = builtins.readFile ./zellij-extra;
+  #programs.zellij.settings = builtins.readFile ./zellij-extra;
 }
