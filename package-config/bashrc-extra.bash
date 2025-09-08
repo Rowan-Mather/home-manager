@@ -65,3 +65,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 finder() {
     find . -iname "*$1*" -print
 }
+
+# Shortcut to get to the top level of a git repo
+gtop() {
+    top_level=$(git rev-parse --show-toplevel)
+    cd "$top_level" || echo "Cannot cd to $top_level"
+}
