@@ -1,8 +1,11 @@
 # See Configuration Collection on the wiki for more examples!
 # https://nixos.wiki/wiki/Configuration_Collection
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, nixfmt, ... }:
 
+let
+  nixfmt-release = nixfmt.packages.${pkgs.system}.default;
+in
 {
   imports = [
     ./sops.nix
@@ -23,6 +26,8 @@
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
+  nixpkgs.config.allowUnfree = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -32,10 +37,10 @@
     aspellDicts.en-computers
     hello
     mkpasswd # Copy & paste
-    podman
     qemu
     ripgrep
     sops
+    lazygit
     
     # Bash & Terminal
     bash-completion
@@ -49,8 +54,8 @@
     haskellPackages.hspec
 
     # Nix
-    nixfmt-rfc-style
     nixd # Language server
+    nixfmt-release
 
     # Postgres (for hydra dev)
     postgresql_16_jit
@@ -64,7 +69,7 @@
     crate2nix
 
     #Vim
-    vimPlugins.vim-plug    
+    # vimPlugins.vim-plug
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

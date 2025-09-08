@@ -15,8 +15,4 @@
     ble-bind -f 'C-m' 'accept-line' # so I can just hit return in multiline mode
     '' + builtins.readFile ./bashrc-extra.bash;
 
-  # direnv
-  programs.direnv.enable = true;
-  programs.direnv.enableBashIntegration = true;
-  #programs.direnv.silent = true;
 }

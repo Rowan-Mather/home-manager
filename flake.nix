@@ -12,9 +12,12 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixfmt = {
+      url = "github:NixOS/nixfmt/1f2589cb7198529c6c1eec9699eccd4d507d3600";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, sops-nix, ... }:
+  outputs = { nixpkgs, home-manager, sops-nix, nixfmt, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -28,6 +31,7 @@
           ./home.nix
           sops-nix.homeManagerModules.sops
         ];
+        extraSpecialArgs = { inherit nixfmt; };
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
