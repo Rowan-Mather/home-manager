@@ -3,9 +3,9 @@
 {
   imports = [
     ./atuin.nix
-    ./bash.nix
+    ./bash
     ./direnv.nix
-    ./zellij.nix
+    ./zellij
     ./vscode.nix
   ];
 }
