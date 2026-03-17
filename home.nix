@@ -41,6 +41,7 @@ in
     ripgrep
     sops
     lazygit
+    nodejs
     
     # Bash & Terminal
     bash-completion
@@ -50,9 +51,13 @@ in
     xclip
 
     # Haskell
-    cabal-install
+    haskellPackages.cabal-install
     haskellPackages.hspec
-
+    haskell.compiler.ghc98
+    haskellPackages.cabal2nix
+    haskellPackages.lzma
+    haskellPackages.lzma-static
+ 
     # Nix
     nixd # Language server
     nixfmt-release
