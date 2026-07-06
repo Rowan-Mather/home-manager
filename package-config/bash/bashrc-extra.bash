@@ -84,6 +84,10 @@ hms() {
     home-manager switch --flake "$HOME_MANAGER_DIR"
 }
 
+hme() {
+    home-manager edit "$@"
+}
+
 gs() {
     git status "$@"
 }
