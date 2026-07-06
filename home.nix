@@ -42,6 +42,7 @@ in
     sops
     lazygit
     nodejs
+    element-desktop
     
     # Bash & Terminal
     bash-completion

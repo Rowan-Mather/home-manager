@@ -71,3 +71,19 @@ gtop() {
     top_level=$(git rev-parse --show-toplevel)
     cd "$top_level" || echo "Cannot cd to $top_level"
 }
+
+export HOME_MANAGER_DIR=~/.config/home-manager
+
+# cd into home-manager dir
+hmcd() {
+    cd "$HOME_MANAGER_DIR" || exit
+}
+
+# switch with flake
+hms() {
+    home-manager switch --flake "$HOME_MANAGER_DIR"
+}
+
+gs() {
+    git status "$@"
+}
