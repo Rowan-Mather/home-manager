@@ -1,11 +1,8 @@
 # See Configuration Collection on the wiki for more examples!
 # https://nixos.wiki/wiki/Configuration_Collection
 
-{ config, pkgs, inputs, nixfmt, ... }:
+{ config, pkgs, inputs, ... }:
 
-let
-  nixfmt-release = nixfmt.packages.${pkgs.system}.default;
-in
 {
   imports = [
     ./sops.nix
@@ -27,69 +24,6 @@ in
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   nixpkgs.config.allowUnfree = true;
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = with pkgs; [
-    # Misc.
-    aspell # Spell-checker
-    aspellDicts.en
-    aspellDicts.en-computers
-    hello
-    mkpasswd # Copy & paste
-    qemu
-    ripgrep
-    sops
-    lazygit
-    nodejs
-    element-desktop
-    
-    # Bash & Terminal
-    bash-completion
-    shellcheck # Linter
-    nix-bash-completions
-    blesh # Bash Line Editor, improves atuin
-    xclip
-
-    # Haskell
-    haskellPackages.cabal-install
-    haskellPackages.hspec
-    haskell.compiler.ghc98
-    haskellPackages.cabal2nix
-    haskellPackages.lzma
-    haskellPackages.lzma-static
- 
-    # Nix
-    nixd # Language server
-    nixfmt-release
-
-    # Postgres (for hydra dev)
-    postgresql_16_jit
-    
-    # Python
-    python312Packages.grip
-    python312Packages.ptpython
-
-    #Rust
-    cargo
-    crate2nix
-
-    #Vim
-    # vimPlugins.vim-plug
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

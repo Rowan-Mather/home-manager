@@ -17,7 +17,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, sops-nix, nixfmt, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, sops-nix, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -31,11 +31,8 @@
           ./home.nix
           sops-nix.homeManagerModules.sops
         ];
-        extraSpecialArgs = { inherit nixfmt; };
+        extraSpecialArgs = { inherit inputs; };
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-        #extraSpecialArgs = { inherit sops-nix; };
       };
     };
 }
