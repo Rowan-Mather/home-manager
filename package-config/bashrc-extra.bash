@@ -88,6 +88,10 @@ hme() {
     home-manager edit "$@"
 }
 
+hmp() {
+    vim "$HOME_MANAGER_DIR"/package-config/default.nix
+}
+
 gs() {
     git status "$@"
 }
