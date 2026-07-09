@@ -77,16 +77,21 @@
       enable = true;
       enableCompletion = true;
       historyControl = [ "ignoreboth" ];
-      bashrcExtra =
-        ''
-        # For atuin (& ble.sh)
-        source "${pkgs.blesh}/share/blesh/ble.sh"
-        eval "$(atuin init bash)"
-
-        # Ble.sh config
-        export BLE_OPT_READLINE=none # idk if this is overkill but it does remove the warning
-        ble-bind -f 'C-m' 'accept-line' # so I can just hit return in multiline mode
-        '' + builtins.readFile ./bashrc-extra.bash;
+      bashrcExtra = ''
+        # For atuin (& ble.sh) — only in truly interactive shells,
+        # so this doesn't fire during non-interactive SSH/nix-copy sessions.
+        if [[ $- == *i* ]]; then
+          source "${pkgs.blesh}/share/blesh/ble.sh" --noattach
+          if command -v atuin >/dev/null 2>&1; then
+            eval "$(atuin init bash)"
+          fi
+          export BLE_OPT_READLINE=none
+          if [[ ''${BLE_VERSION-} ]]; then
+            ble-bind -f 'C-m' 'accept-line'
+            ble-attach
+          fi
+        fi
+      '' + builtins.readFile ./bashrc-extra.bash;
     };
 
     direnv = {
