@@ -95,3 +95,11 @@ hmp() {
 gs() {
     git status "$@"
 }
+
+# try to autostart tmux
+if [ -z "$TMUX" ] && [ -n "$PS1" ] && command -v tmux &> /dev/null; then
+  # swallow any stray terminal-query replies (cursor position reports, etc.)
+  # before tmux takes over, so they don't show up as garbage text
+  read -t 0.1 -N 100000 -r _discard 2>/dev/null
+  exec tmux
+fi

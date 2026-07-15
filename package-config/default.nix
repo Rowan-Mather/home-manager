@@ -100,9 +100,46 @@
       # silent = true;
     };
 
+    # llm generated config to mimic zellij key bindings and mouse usage
+    # note: hold shift to get normal select for copying
+    tmux = {
+      enable = true;
+      newSession = true;
+      extraConfig = ''
+        # This removes the standard tmux detach behaviour and kills all sessions
+        # on exit/detach. Obviously this is not generally sensible, but better
+        # for me :)
+        set -g destroy-unattached on
+        ${builtins.readFile ./tmux-config}
+      '';
+    };
+
+    # vscode
+    # Configured manually for now but I like these keybindings because they
+    # allow you to use fake-zellij-tmux in the vscode terminal. Migrate to
+    # declarative style in future :)
+    /*
+    {
+        "key": "ctrl+`",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "ctrl+`",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
+    },
+    { "key": "ctrl+p", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u0010" }, "when": "terminalFocus" },
+    { "key": "ctrl+t", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u0014" }, "when": "terminalFocus" },
+    { "key": "ctrl+n", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u000e" }, "when": "terminalFocus" },
+    { "key": "ctrl+h", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u0008" }, "when": "terminalFocus" },
+    { "key": "ctrl+o", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u000f" }, "when": "terminalFocus" },
+    { "key": "ctrl+s", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u0013" }, "when": "terminalFocus" },
+    { "key": "ctrl+q", "command": "workbench.action.terminal.sendSequence", "args": { "text": "\u0011" }, "when": "terminalFocus" }
+    */
+
     zellij = {
       enable = true;
-      enableBashIntegration = true;
+      enableBashIntegration = false;
       # package = ...;
       extraConfig = builtins.readFile ./zellij_config.kdl;
     };
